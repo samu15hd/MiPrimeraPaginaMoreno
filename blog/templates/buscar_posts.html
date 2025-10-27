@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Buscar publicaciones{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Buscar publicaciones</h2>
+
+<form method="get" class="mb-4">
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Buscar</button>
+</form>
+
+{% if resultados %}
+    <ul class="list-group">
+        {% for post in resultados %}
+            <li class="list-group-item">
+                <strong>{{ post.titulo }}</strong><br>
+                Autor: {{ post.autor.nombre }} |
+                {% if post.categoria %}Categoría: {{ post.categoria.nombre }}{% else %}Sin categoría{% endif %}
+                <br>
+                <a href="{% url 'detalle_post' post.id %}" class="btn btn-sm btn-outline-primary mt-2">Ver detalle</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% elif form.cleaned_data.query %}
+    <p>No se encontraron resultados para "{{ form.cleaned_data.query }}".</p>
+{% endif %}
+{% endblock %}

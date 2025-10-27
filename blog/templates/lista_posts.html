@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Publicaciones{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Últimas publicaciones</h2>
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for post in posts %}
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">{{ post.titulo }}</h5>
+                <p class="card-text">{{ post.contenido|truncatewords:30 }}</p>
+            </div>
+            <div class="card-footer text-muted">
+                📅 {{ post.fecha_publicacion|date:"d M Y" }} |
+                🖋️ {{ post.autor.nombre }}
+                {% if post.categoria %}
+                    | 🗂️ Categoría: {{ post.categoria.nombre }}
+                {% endif %}
+                <a href="{% url 'detalle_post' post.id %}" class="btn btn-sm btn-outline-primary float-end">Leer más</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>No hay publicaciones todavía.</p>
+    {% endfor %}
+</div>
+{% endblock %}
+

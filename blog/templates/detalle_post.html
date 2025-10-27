@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.titulo }}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h2 class="card-title">{{ post.titulo }}</h2>
+        <p class="card-text">{{ post.contenido }}</p>
+    </div>
+    <div class="card-footer text-muted">
+        📅 {{ post.fecha_publicacion|date:"d M Y" }} |
+        🖋️ {{ post.autor.nombre }} |
+        🗂️ {% if post.categoria %}{{ post.categoria.nombre }}{% else %}Sin categoría{% endif %}
+        <a href="/" class="btn btn-sm btn-outline-secondary float-end">Volver</a>
+    </div>
+</div>
+{% endblock %}
+

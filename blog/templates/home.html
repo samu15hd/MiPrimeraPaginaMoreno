@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Bienvenido a SPost{% endblock %}
+
+{% block content %}
+<div class="container text-center mt-5">
+    <h1 class="display-4">Bienvenido a sPost</h1>
+    <p class="lead">Tu espacio para compartir ideas, noticias y más.</p>
+
+    <div class="mt-4">
+        <a href="{% url 'lista_posts' %}" class="btn btn-outline-primary btn-lg me-3">
+            Ver publicaciones
+        </a>
+        <a href="{% url 'crear_post' %}" class="btn btn-primary btn-lg">
+            Crear nueva publicación
+        </a>
+    </div>
+</div>
+{% endblock %}
+
